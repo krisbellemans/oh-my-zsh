@@ -22,14 +22,17 @@ bindkey -v
 
 # if mode indicator wasn't setup by theme, define default
 if [[ "$MODE_INDICATOR" == "" ]]; then
-  MODE_INDICATOR="%{$fg_bold[red]%}<%{$fg[red]%}<<%{$reset_color%}"
+  MODE_INDICATOR="%{$fg_bold[red]%}%{$fg[red]%}-- NORMAL --%{$reset_color%}"
 fi
 
 function vi_mode_prompt_info() {
-  echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
+  echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/-- INSERT --}"
 }
 
 # define right prompt, if it wasn't defined by a theme
 if [[ "$RPS1" == "" && "$RPROMPT" == "" ]]; then
   RPS1='$(vi_mode_prompt_info)'
 fi
+#export KEYTIMEOUT=1
+bindkey jj vi-cmd-mode 
+bindkey ^R history-incremental-search-backward
