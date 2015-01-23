@@ -33,6 +33,7 @@ function vi_mode_prompt_info() {
 if [[ "$RPS1" == "" && "$RPROMPT" == "" ]]; then
   RPS1='$(vi_mode_prompt_info)'
 fi
-#export KEYTIMEOUT=1
-bindkey jj vi-cmd-mode 
+export KEYTIMEOUT=17
+#bindkey jj vi-cmd-mode 
+bindkey -M viins 'jj' vi-cmd-mode
 bindkey ^R history-incremental-search-backward
