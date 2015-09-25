@@ -1,5 +1,5 @@
 parent=$(ps --pid $(ps --pid $$ --no-headers --format ppid) --no-headers --format cmd)
-if [[ $parent == xterm* ]]; then
+if [[ $parent == xterm* || $parent == tmux* || $parent == sshd* || $parent == urxvt* ]]; then
 PROMPT=$'%{$fg_bold[green]%}%n@%m %{$fg[blue]%}:: %{$reset_color%}%{$fg[white]%}[%~]%{$reset_color%} $(git_prompt_info)$(svn_prompt_info)\
 %{$fg[blue]%}»%{$fg_bold[blue]%}%{$reset_color%} '
 else
